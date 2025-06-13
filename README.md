@@ -84,12 +84,78 @@ python app.py
 pip install -r requirements.txt
 ```
 
-3. Build the executable
+3. Create the spec file
+```bash
+# First, create a basic spec file
+pyinstaller --name PeeDoFile --onefile --windowed app.py
+
+# This will create PeeDoFile.spec
+```
+
+4. Edit the `PeeDoFile.spec` file with these contents:
+```python
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+a = Analysis(
+    ['app.py'],
+    pathex=[],
+    binaries=[],
+    datas=[],
+    hiddenimports=['PyQt5.sip'],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='PeeDoFile',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,
+    disable_windowed_traceback=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+    icon=None,  # Add icon file path here if you have one
+)
+```
+
+5. Build the executable
 ```bash
 pyinstaller PeeDoFile.spec
 ```
 
-4. Find the executable in the `dist` folder
+6. Find the executable in the `dist` folder
+
+### Important Notes:
+- The spec file configuration ensures:
+  - Single-file executable (`--onefile`)
+  - No console window (`--windowed`)
+  - Proper handling of PyQt5 dependencies
+  - Optimized packaging with UPX compression
+- You can customize the spec file further:
+  - Add an application icon
+  - Include additional data files
+  - Modify hidden imports
+  - Configure debugging options
 
 ## 💫 Usage
 
