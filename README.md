@@ -1,12 +1,13 @@
-# 🌊 PeeDoFile 初春 (Hatsuharu/First Spring) - PDF Editor and Annotator �Rising Sun
+# 🌊 PeeDoFile 初春 (Hatsuharu/First Spring) - PDF Editor and Annotator
 
 <div align="center">
 
-![PeeDoFile Banner](https://i.imgur.com/placeholder.png)
+![PeeDoFile Banner](https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80)
 
-[![License](https://img.shields.io/badge/license-MIT-red.svg?style=flat-square)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.9+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
-[![PyQt5](https://img.shields.io/badge/PyQt-5.15+-orange.svg?style=flat-square)](https://pypi.org/project/PyQt5/)
+[![License](https://img.shields.io/badge/license-GPL--3.0-red.svg?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.13.5-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![PyQt5](https://img.shields.io/badge/PyQt-5.15.11-orange.svg?style=flat-square)](https://pypi.org/project/PyQt5/)
+[![PyMuPDF](https://img.shields.io/badge/PyMuPDF-1.26.1-green.svg?style=flat-square)](https://pypi.org/project/PyMuPDF/)
 
 *A minimalist yet powerful PDF editor inspired by the simplicity of Japanese design*
 
@@ -66,8 +67,8 @@ python app.py
 ## 🛠️ Building the Executable
 
 ### Prerequisites
-- Python 3.9+
-- PyInstaller
+- Python 3.13.5
+- PyInstaller 6.14.1
 - Virtual environment (recommended)
 
 ### Build Steps
@@ -78,9 +79,9 @@ python app.py
 .venv\Scripts\activate
 ```
 
-2. Install PyInstaller if not already installed
+2. Install required packages
 ```bash
-pip install pyinstaller
+pip install -r requirements.txt
 ```
 
 3. Build the executable
@@ -115,8 +116,7 @@ PeeDoFile/
 ├── app.py              # Main application entry
 ├── features/
 │   ├── annotator.py    # Annotation functionality
-│   ├── viewer.py       # PDF viewing components
-│   └── saver.py        # File saving operations
+│   └── viewer.py       # PDF viewing components
 ├── requirements.txt    # Project dependencies
 └── PeeDoFile.spec     # PyInstaller specification
 ```
@@ -125,24 +125,23 @@ PeeDoFile/
 
 ### Dependencies
 
-- **PyQt5**: GUI framework
-- **PyMuPDF**: PDF manipulation
-- **PyInstaller**: Executable creation
+- **PyQt5**: GUI framework (v5.15.11)
+- **PyMuPDF**: PDF manipulation (v1.26.1)
+- **PyInstaller**: Executable creation (v6.14.1)
 
 ### Key Components
 
-- **PDFViewer**: Main window and PDF display
-- **PDFAnnotator**: Drawing and annotation handling
-- **PDFSaver**: File operations and saving
+- **PDFViewer**: Main window and PDF display with integrated saving functionality
+- **PDFAnnotator**: Drawing and annotation handling with color selection
 
-## 🎨 Customization
+## 🎨 Design Philosophy
 
-The application uses a minimalist design inspired by Japanese aesthetics:
+The application embodies Japanese minimalist design principles:
 
-- Clean interface
-- Minimal controls
-- Focus on content
-- Efficient workflow
+- Clean interface with essential controls
+- Distraction-free viewing experience
+- Intuitive annotation workflow
+- Efficient file operations
 
 ## 🤝 Contributing
 
@@ -156,11 +155,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Acknowledgments
 
-- Inspired by Japanese minimalism
+- Inspired by Japanese minimalism and efficiency
 - Built with PyQt5 and PyMuPDF
 - PDF handling powered by MuPDF
 
