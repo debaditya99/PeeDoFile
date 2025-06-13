@@ -161,12 +161,11 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 - Inspired by Japanese minimalism and efficiency
 - Built with PyQt5 and PyMuPDF
-- PDF handling powered by MuPDF
 
 ---
 
 <div align="center">
 
-Made with ❤️ and 🍵
+Made with ❤️ and 🍵 by the seven and only Debaditya M. and the multiple AI agents on trial mode.
 
 </div>
