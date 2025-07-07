@@ -18,16 +18,17 @@
 ## 🎨 Features
 
 - **清潔** (Cleanliness)
-  - Clean and intuitive interface
-  - Distraction-free PDF viewing
+  - Clean and intuitive interface with toolbar-based controls
+  - Distraction-free PDF viewing with zoom capabilities
 
 - **調和** (Harmony)
-  - Seamless annotation integration
-  - Fluid drawing experience
+  - Seamless annotation integration with color selection
+  - Fluid drawing experience with real-time feedback
 
 - **実用性** (Practicality)
-  - Easy file handling
-  - Quick save and overwrite capabilities
+  - Easy file handling with recent files tracking
+  - Quick save and export of annotated PDFs
+  - Smooth zoom controls for detailed work
 
 ## 🚀 Quick Start
 
@@ -162,18 +163,25 @@ pyinstaller PeeDoFile.spec
 ### Basic Operations
 
 1. **Open PDF**
-   - Use File > Open PDF (Ctrl+O)
+   - Click the Open button in toolbar or use File > Open PDF (Ctrl+O)
    - Select your PDF file
+   - Recently opened files appear in the File > Recent Files menu
 
 2. **Annotation Mode**
-   - Toggle: Tools > Toggle Annotation Mode (Ctrl+A)
-   - Use the Color button to select drawing color
-   - Click and drag to draw
-   - Use Clear button to remove annotations
+   - Toggle annotation mode using the annotation button in toolbar (Ctrl+A)
+   - Click the color button to choose drawing color
+   - Click and drag on the PDF to draw annotations
+   - Use the clear button to remove all annotations
 
-3. **Save Files**
-   - File > Save As... (Ctrl+S)
-   - Choose location and save
+3. **Zoom Controls**
+   - Use the zoom slider in the toolbar to adjust zoom level
+   - Mouse wheel for quick zoom in/out
+   - PDF automatically centers in view
+
+4. **Save Files**
+   - Click the Save button in toolbar or use File > Save As... (Ctrl+S)
+   - Choose whether to save with or without annotations
+   - Select save location
 
 ## 🎯 Project Structure
 
@@ -182,7 +190,9 @@ PeeDoFile/
 ├── app.py              # Main application entry
 ├── features/
 │   ├── annotator.py    # Annotation functionality
-│   └── viewer.py       # PDF viewing components
+│   ├── viewer.py       # PDF viewing components
+│   ├── zoom.py         # Zoom control handling
+│   └── recentfiles.py  # Recent files management
 ├── requirements.txt    # Project dependencies
 └── PeeDoFile.spec     # PyInstaller specification
 ```
@@ -191,14 +201,16 @@ PeeDoFile/
 
 ### Dependencies
 
-- **PyQt5**: GUI framework (v5.15.11)
-- **PyMuPDF**: PDF manipulation (v1.26.1)
-- **PyInstaller**: Executable creation (v6.14.1)
+- **PyQt5**: GUI framework with modern widgets (v5.15.11)
+- **PyMuPDF**: Fast PDF manipulation and rendering (v1.26.1)
+- **PyInstaller**: Single-file executable creation (v6.14.1)
 
 ### Key Components
 
-- **PDFViewer**: Main window and PDF display with integrated saving functionality
+- **PDFViewer**: Main window and PDF display with toolbar-based controls
 - **PDFAnnotator**: Drawing and annotation handling with color selection
+- **PDFZoomHandler**: Zoom management and display scaling
+- **RecentFilesManager**: Recent files tracking and management
 
 ## 🎨 Design Philosophy
 

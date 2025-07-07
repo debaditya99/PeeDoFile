@@ -7,36 +7,7 @@ import tempfile
 import shutil
 import time
 
-class ControlFrame(QFrame):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setFrameStyle(QFrame.Panel | QFrame.Raised)
-        self.setStyleSheet("""
-            QPushButton {
-                min-width: 60px;
-                padding: 5px;
-                background-color: #f0f0f0;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-            }
-            QPushButton:hover {
-                background-color: #e0e0e0;
-            }
-        """)
-        
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        layout.setSpacing(5)
-        
-        self.color_button = QPushButton("Color")
-        self.clear_button = QPushButton("Clear")
-        
-        layout.addWidget(self.color_button)
-        layout.addWidget(self.clear_button)
-        
-        # Set fixed size for the frame
-        self.setFixedHeight(50)
-        self.adjustSize()
+# Control Frame removed as controls are now in toolbar
 
 class PDFAnnotator(QWidget):
     def __init__(self, parent=None):
@@ -53,26 +24,10 @@ class PDFAnnotator(QWidget):
         self.setup_ui()
 
     def setup_ui(self):
-        # Create control frame with buttons
-        self.control_frame = ControlFrame(self)
-        
-        # Connect button signals
-        self.control_frame.color_button.clicked.connect(self.choose_color)
-        self.control_frame.clear_button.clicked.connect(self.clear_annotations)
-        
-        # Update color button background
-        self.update_color_button()
-
-    def update_color_button(self):
-        self.control_frame.color_button.setStyleSheet(
-            f"background-color: {self.current_color.name()}; color: {'white' if sum(self.current_color.getRgb()[:3]) < 380 else 'black'}"
-        )
+        pass  # All controls are now in the toolbar
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
-        # Position the control frame in the top-right corner
-        frame_width = self.control_frame.sizeHint().width()
-        self.control_frame.move(self.width() - frame_width - 10, 10)
 
     def choose_color(self):
         color = QColorDialog.getColor(self.current_color)
@@ -90,12 +45,12 @@ class PDFAnnotator(QWidget):
         self.update()
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton and not self.control_frame.geometry().contains(event.pos()):
+        if event.button() == Qt.LeftButton:
             self.drawing = True
             self.last_point = event.pos()
 
     def mouseMoveEvent(self, event):
-        if self.drawing and not self.control_frame.geometry().contains(event.pos()):
+        if self.drawing:
             current_point = event.pos()
             self.annotations.append({
                 'start': self.last_point,
@@ -216,3 +171,17 @@ class PDFAnnotator(QWidget):
         except Exception as e:
             print(f"Error saving annotations: {str(e)}")
             return False
+
+    def adjust_overlay(self, pixmap_size):
+        """
+        Adjust the annotator overlay to match the zoomed PDF size
+        """
+        if pixmap_size:
+            # Update widget geometry to match the PDF size
+            self.setFixedSize(pixmap_size)
+            # Resize the widget to match the new PDF size
+            self.resize(pixmap_size)
+            # Update the PDF rect to match the new size
+            self.set_pdf_rect(self.rect())
+            # Make sure the control frame is still in the right position
+            self.resizeEvent(None)
